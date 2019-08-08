@@ -1,14 +1,7 @@
 export class CustomLogic {
-    slice = (_data, val) => {
-        if(_data.length > val ) {
-            return _data.substr(0,val - 3) + '...'
-        }
-        return _data;
-    }
+    slice = (_data, val) => { return _data.length > val ? _data.substr(0, val - 3) : _data }
+    
 
-    removeExtra = (_data, _char) => {
-        _char = new RegExp(_char, "g");
-        return _data.replace(_char , "");
-    }
+    removeExtra = (_data, _char) => { return _data.replace(new RegExp(_char, "g"), ""); }
 }
 export default CustomLogic;

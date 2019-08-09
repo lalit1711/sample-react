@@ -12,16 +12,23 @@ class Conference extends Component {
   }
   componentDidMount = async () => {
     let _api = new ApiService();
-    _api.getDataFormApi("https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences")
-      .then((fromResolve) => {
-        this.setState({
-          _conference: fromResolve
-        });
-    })
+    _api.getDataFromApi("https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences")
+      .subscribe(res => {
+        if(res.status === 200) {
+          this.setState({
+            _conference: res.response.free
+          })
+        }
+      });
 
   }
   render(){
     let _conferenceNumber = this.state._conference;
+    if(!_conferenceNumber.length){
+      return(
+        <center><h2>Loading...</h2></center>
+      )
+    }
     return(
       <div className="row">
         {

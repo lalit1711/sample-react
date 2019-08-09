@@ -1,12 +1,14 @@
+import { Observable, throwError } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { filter,map ,tap} from 'rxjs/operators';
 
 export class ApiService  { 
-    getDataFormApi = (url): any => {
-    return new Promise((resolve,reject) => {
-        fetch(url)
-            .then(response => (response.json()))
-                .then((json) => resolve(json.free));
-    });
-  } 
+
+  constructor(){
+  }
+  getDataFromApi = (url): Observable<any> => {
+    return ajax(url)
+  }
 
   getDetailsOfParticularConference = (url, _confId): any => {
     return new Promise((resolve, reject) => {
@@ -18,6 +20,7 @@ export class ApiService  {
           });
     });
   }
+
 };
 
 export default ApiService;

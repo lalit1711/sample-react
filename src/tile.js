@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { CustomLogic } from "./customLogic.directive.ts";
-
-const _customLogic = new CustomLogic();
-
+import { Link } from "react-router-dom";
+const _customLogic = new CustomLogic(); 
 export class Tile extends Component { 
     constructor(props) {
         super(props)
@@ -16,18 +15,20 @@ export class Tile extends Component {
     }
     render(){
         return(
-            <div className="col-md-3" style={_style.gridContainer} key={this.state._key} >
-                <div style={_style.gridItem}>
-                  <div style={_style.card}>
-                    <img src={_customLogic.removeExtra(this.state._imageURL, '"')}  style={_style.width} alt={this.state._name}/>
-                    <h1>{_customLogic.slice(this.state._name , 20)}</h1>
-                    <p style={_style.title}>{this.state._city}</p>
-                    <p>{this.state._date}</p>
-                    <div>
+                <div className="col-md-3" style={_style.gridContainer} key={this.state._key} >
+                    <Link to={"/details/"+this.state._key}>
+                    <div style={_style.gridItem}>
+                    <div style={_style.card}>
+                        <img src={_customLogic.removeExtra(this.state._imageURL, '"')}  style={_style.width} alt={this.state._name}/>
+                        <h1>{_customLogic.slice(this.state._name , 20)}</h1>
+                        <p style={_style.title}>{this.state._city}</p>
+                        <p>{this.state._date}</p>
+                        <div>
+                        </div>
                     </div>
-                  </div>
+                    </div>
+                    </Link>
                 </div>
-              </div>
         );
     }
 

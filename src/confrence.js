@@ -25,22 +25,28 @@ class Conference extends Component {
 
   }
 
-  filterConferences = (_keyText) => {
+  filterConferences = async (_keyText) => {
     const _customLogic = new CustomLogic();
-    _customLogic.filterConferences(_keyText, this.state._orginalData).then(
-      (fromResolve) => {
-        this.setState({
-          _conference: fromResolve
-        })
-      }
-    )
+    let _filteredData = await _customLogic.filterConferences(_keyText, this.state._orginalData)
+    this.setState({
+      _conference: _filteredData
+    })
   }
 
   render(){
     let _conferenceNumber = this.state._conference;
     if(!_conferenceNumber.length){
       return(
-        <center><h2>Loading...</h2></center>
+        <div className="container">
+        <br />
+        <div className="row">
+          <div className="col-md-12">
+            <input type="text" placeholder="search..." onChange ={((text) => {this.filterConferences(text.target.value)})} />
+            <label>({this.state._conference.length})</label>
+          </div>
+        </div>
+          <center><h2>Loading...</h2></center>
+        </div>
       )
     }
     return(

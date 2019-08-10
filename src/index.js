@@ -1,24 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import ConferenceDetails from './confDetails';
-import Conference from './confrence';
-import { BrowserRouter, Route } from "react-router-dom";
+import Routes from './route'
 import * as serviceWorker from './serviceWorker';
 
 class Root extends React.Component {
     render(){
         return (
-            <BrowserRouter>
-                <div>
-                    <Route path="/" exact component={App} >
-                        <Route path="/" exact component={Conference} />
-                        <Route path="/conf/" component={Conference} />
-                        <Route path="/details/:id" component={ConferenceDetails} />
-                    </Route>
-                </div>
-            </BrowserRouter>
+            <Routes />
         )
     }
 }

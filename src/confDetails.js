@@ -13,13 +13,17 @@ export class ConferenceDetails extends Component {
         }
     }
     componentDidMount = () => {
-        _apiService.getDetailsOfParticularConference("https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences", this.props.match.params.id)
-            .then((fromResolve) => {
+        _apiService.getDetailsOfParticularConference(
+            "https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences",
+             this.props.match.params.id
+        ).subscribe(
+            res => {
                 this.setState({
-                    _conferenceData: fromResolve,
+                    _conferenceData: res,
                     isLoading: false
                 })
-            })
+            }
+        )
     }
     render(){
         if(this.state.isLoading){

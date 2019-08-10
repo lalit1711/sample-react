@@ -6,15 +6,12 @@ export class ApiService  {
 
   constructor(){
   }
-  getDataFromApi = (url: any): Observable<any> => {
-    return ajax(url)
-  }
-  getDetailsOfParticularConference = (url: any, _confId: number): Observable<any> =>{
+  getDataFromApi = (url: any, _confId: number): Observable<any> => {
     return ajax(url).pipe(
       map(res => {
-        return res.response.free.filter(
+        return _confId ? res.response.free.filter(
           (_da:any) => _da.conference_id == _confId
-        )
+        ) : res;
       })
     )
   }

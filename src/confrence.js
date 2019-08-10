@@ -12,7 +12,7 @@ class Conference extends Component {
   }
   componentDidMount = async () => {
     let _api = new ApiService();
-    _api.getDataFromApi("https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences")
+    _api.getDataFromApi("https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences", 0)
       .subscribe(res => {
         if(res.status === 200) {
           this.setState({

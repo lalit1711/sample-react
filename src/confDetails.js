@@ -13,7 +13,7 @@ export class ConferenceDetails extends Component {
         }
     }
     componentDidMount = () => {
-        _apiService.getDetailsOfParticularConference(
+        _apiService.getDataFromApi(
             "https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences",
              this.props.match.params.id
         ).subscribe(

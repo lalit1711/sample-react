@@ -15,10 +15,10 @@ class Conference extends Component {
     let _api = new ApiService();
     _api.getDataFromApi("https://o136z8hk40.execute-api.us-east-1.amazonaws.com/dev/get-list-of-conferences", 0)
       .subscribe(res => {
-        if(res.status === 200) {
+        if(res) {
           this.setState({
-            _conference: res.response.free,
-            _orginalData: res.response.free
+            _conference: res,
+            _orginalData: res
           })
         }
       });
@@ -38,13 +38,13 @@ class Conference extends Component {
     if(!_conferenceNumber.length){
       return(
         <div className="container">
-        <br />
-        <div className="row">
-          <div className="col-md-12">
-            <input type="text" placeholder="search..." onChange ={((text) => {this.filterConferences(text.target.value)})} />
-            <label>({this.state._conference.length})</label>
+          <br />
+          <div className="row">
+            <div className="col-md-12">
+              <input type="text" placeholder="search..." onChange ={((text) => {this.filterConferences(text.target.value)})} />
+              <label>({this.state._conference.length})</label>
+            </div>
           </div>
-        </div>
           <center><h2>Loading...</h2></center>
         </div>
       )

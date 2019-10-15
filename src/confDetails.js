@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import { ApiService } from './api.service.ts';
-
+import { CustomLogic } from "./customLogic.directive.ts";
 const _apiService = new ApiService(); 
+let _customizelogic = new CustomLogic();
 export class ConferenceDetails extends Component {
 
     constructor(props){
@@ -72,10 +73,19 @@ export class ConferenceDetails extends Component {
                         </tbody>
                     </table>
                     </div>
+                    <img src={_customizelogic.removeExtra(this.state._conferenceData[0].imageURL,'"')}
+                        style={styles.imgStyle}
+                        alt={this.state._conferenceData[0].confName} />
                 </div>
             </div>
         );
     }
 } ;
+
+const styles = {
+    imgStyle:{
+        width:"500px"
+    }
+}
 
 export default ConferenceDetails;
